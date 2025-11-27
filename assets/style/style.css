@@ -1,0 +1,182 @@
+:root {
+  --bg: #f7f8fb;            /* very light neutral */
+  --sidebar-bg: #ffffff;    /* white sidebar */
+  --text: #1f2937;          /* dark slate */
+  --muted: #6b7280;         /* muted grey */
+  --accent: #1f6feb;        /* professional blue (primary) */
+  --accent-light: #e6f0ff;  /* light blue highlight */
+  --border: #e6e9ee;
+  --radius: 12px;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color-scheme: light;
+}
+
+/* RESET */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: var(--bg); color: var(--text); }
+
+/* LAYOUT */
+.has-sidebar { display: flex; min-height: 100vh; }
+
+/* SIDEBAR */
+.sidebar {
+  width: 300px;
+  padding: 28px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  /* allow content to size naturally instead of forcing image to fill 100vh */
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* PROFILE CARD: restrict image size so it doesn't dominate */
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+/* **Key fix**: limit photo height and preserve aspect ratio */
+.profile-photo {
+  width: 100%;
+  max-width: 220px;    /* a controlled width so it doesn't stretch across the whole sidebar */
+  height: 220px;       /* fixed height for consistent layout */
+  object-fit: cover;   /* keeps the image centered & cropped nicely */
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+/* center the small profile visually (optional) */
+.profile-photo-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* name & role */
+.profile-name { margin-top: 6px; font-size: 1.35rem; font-weight: 800; color: var(--text); }
+.role { color: var(--muted); font-weight: 600; margin-bottom: 6px; }
+
+/* CV BUTTON */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--accent);
+  color: #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: transform .16s ease, box-shadow .16s ease;
+  box-shadow: 0 6px 18px rgba(31,111,235,0.08);
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(31,111,235,0.12); }
+
+/* NAV */
+.side-nav { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+.side-nav a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.side-nav a:hover { background: var(--accent-light); color: var(--accent); }
+
+/* MAIN CONTENT */
+.content { flex: 1; padding: 32px; }
+
+/* header */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; }
+.menu-toggle { display: none; background: none; border: none; font-size: 1.25rem; }
+.header-meta { color: var(--muted); font-weight: 600; }
+
+/* CARDS */
+.card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 18px;
+  box-shadow: 0 6px 18px rgba(23,28,36,0.03);
+}
+.card h2 { margin-top: 0; color: var(--accent); font-weight: 800; }
+
+/* PROJECTS (simple style) */
+.project-list { display: flex; flex-direction: column; gap: 12px; }
+.simple-proj {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+}
+.simple-proj h3 { margin: 0 0 6px; font-size: 1.12rem; font-weight: 800; color: var(--text); }
+.simple-proj p { margin: 0; color: var(--muted); line-height: 1.45; }
+
+/* SKILLS */
+.skills-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.skills-list li {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: white;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 700;
+}
+/* wrapper so image is centered and constrained */
+.profile-photo-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 6px; /* small gap */
+}
+
+/* limit photo size so it doesn't dominate the sidebar */
+.profile-photo {
+  width: 100%;
+  max-width: 220px;   /* control the width */
+  height: 220px;      /* fixed display height */
+  object-fit: cover;  /* crop while keeping aspect */
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  display: block;
+}
+@media (max-width: 900px) {
+  .profile-photo { max-width: 160px; height: 160px; }
+}
+
+
+/* CONTACT */
+.contact-card input, .contact-card textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin-top: 6px;
+  background: #fff;
+}
+.form-actions { display: flex; gap: 12px; align-items: center; margin-top: 12px; }
+.btn.send { background: var(--accent); color: #fff; }
+
+/* FOOTER */
+.footer { margin-top: 18px; text-align: center; color: var(--muted); }
+
+/* responsive */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .menu-toggle { display: block; }
+  .header-cv { display: inline-flex; }
+  .profile-photo { max-width: 160px; height: 160px; }
+}
